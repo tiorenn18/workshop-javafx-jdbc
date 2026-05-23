@@ -30,8 +30,12 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
+    @SuppressWarnings("exports")
+    public static Scene getMaiScene() {
+        return scene;
+    }
+
     public static void main(String[] args) {
         launch();
     }
-
 }
