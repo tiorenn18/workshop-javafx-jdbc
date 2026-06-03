@@ -20,12 +20,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import workshop.javafx.jdbc.gui.listeners.DataChangeListener;
 import workshop.javafx.jdbc.gui.util.Alerts;
 import workshop.javafx.jdbc.gui.util.Utils;
 import workshop.javafx.jdbc.model.entities.Department;
 import workshop.javafx.jdbc.model.service.DepartmentService;
 
-public class DepartmentListController implements Initializable {
+public class DepartmentListController implements Initializable, DataChangeListener {
 
     private DepartmentService service;
 
@@ -86,6 +87,7 @@ public class DepartmentListController implements Initializable {
             DepartmentFormController controller = loader.getController();
             controller.setDepartment(obj);
             controller.setDepartmentService(new DepartmentService());
+            controller.subscribeDataChangeListener(this);
             controller.updateFormData();
             
             Stage dialogStage = new Stage();
@@ -99,5 +101,10 @@ public class DepartmentListController implements Initializable {
         } catch (IOException e) {
             Alerts.showAlerts("IO Exception", "Error londing view", e.getMessage(), Alert.AlertType.ERROR);
         }
+    }
+
+    @Override
+    public void onDataChanged() {
+        updateTableView();
     }
 }
