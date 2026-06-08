@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import workshop.javafx.jdbc.db.DbIntegrityException;
 import workshop.javafx.jdbc.model.dao.DepartmentDao;
 import workshop.javafx.jdbc.model.entities.Department;
 
@@ -67,7 +68,7 @@ public class DepartmentDaojdbc implements DepartmentDao {
             st.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DbIntegrityException(e.getMessage());
         }
     }
 

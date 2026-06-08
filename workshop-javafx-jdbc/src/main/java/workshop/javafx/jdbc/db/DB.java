@@ -13,6 +13,7 @@ public class DB {
 
 	private static Connection conn = null;
 
+	@SuppressWarnings("exports")
 	public static Connection getConnection() {
 		if (conn == null) {
 			try {
@@ -50,6 +51,7 @@ public class DB {
 		}
 	}
 
+	@SuppressWarnings("exports")
 	public static void closeStatement(Statement st) {
 		if (st != null) {
 			try {
@@ -60,6 +62,7 @@ public class DB {
 		}
 	}
 
+	@SuppressWarnings("exports")
 	public static void closeResultSet(ResultSet rs) {
 		if (rs != null) {
 			try {
