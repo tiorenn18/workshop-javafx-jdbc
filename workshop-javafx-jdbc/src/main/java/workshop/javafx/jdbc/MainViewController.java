@@ -16,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import workshop.javafx.jdbc.gui.util.Alerts;
 import workshop.javafx.jdbc.model.service.DepartmentService;
+import workshop.javafx.jdbc.model.service.SellerService;
 
 public class MainViewController implements Initializable {
     @FXML
@@ -29,7 +30,10 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemSellerAction() {
-        System.out.println("onMenuItemSellerAction");
+        loadView("SellerList.fxml", (SellerListController controller) -> {
+            controller.setSellerService(new SellerService());
+            controller.updateTableView();
+        });
     }
 
     @FXML
@@ -42,7 +46,8 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemAboutrAction() {
-        loadView("About.fxml", x -> {});
+        loadView("About.fxml", x -> {
+        });
     }
 
     @Override
@@ -50,7 +55,7 @@ public class MainViewController implements Initializable {
 
     }
 
-    private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction ) {
+    private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
             VBox newVbox = loader.load();
@@ -66,7 +71,7 @@ public class MainViewController implements Initializable {
 
             T controller = loader.getController();
             initializingAction.accept(controller);
-            
+
         } catch (IOException e) {
             Alerts.showAlerts("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
         }
