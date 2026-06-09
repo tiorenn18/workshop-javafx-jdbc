@@ -177,4 +177,6 @@ public class DepartmentListController implements Initializable, DataChangeListen
             }
         }
     }
+
+    
 }

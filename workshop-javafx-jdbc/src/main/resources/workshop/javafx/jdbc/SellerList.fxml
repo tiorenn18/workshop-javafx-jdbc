@@ -31,8 +31,8 @@
             <TableColumn fx:id="tableColumnEmail" prefWidth="123.0" text="Email" />
             <TableColumn fx:id="tableColumnBirthDate" text="Barth Date" />
             <TableColumn fx:id="tableColumnBaseSalary" prefWidth="73.0" text="Base Salary" />
-            <TableColumn fx:id="tableColumnEDIT" prefWidth="24.0" />
-            <TableColumn fx:id="tableColumnREMOVE" prefWidth="75.0" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="49.0" />
+            <TableColumn fx:id="tableColumnREMOVE" prefWidth="72.0" />
         </columns>
       </TableView>
    </children>
