@@ -31,6 +31,7 @@ import workshop.javafx.jdbc.gui.listeners.DataChangeListener;
 import workshop.javafx.jdbc.gui.util.Alerts;
 import workshop.javafx.jdbc.gui.util.Utils;
 import workshop.javafx.jdbc.model.entities.Seller;
+import workshop.javafx.jdbc.model.service.DepartmentService;
 import workshop.javafx.jdbc.model.service.SellerService;
 
 public class SellerListController implements Initializable, DataChangeListener {
@@ -116,7 +117,8 @@ public class SellerListController implements Initializable, DataChangeListener {
 
             SellerFormController controller = loader.getController();
             controller.setSeller(obj);
-            controller.setSellerService(new SellerService());
+            controller.setServices(new SellerService(), new DepartmentService());
+            controller.loadAssocieteObjects();
             controller.subscribeDataChangeListener(this);
             controller.updateFormData();
 
@@ -129,6 +131,7 @@ public class SellerListController implements Initializable, DataChangeListener {
             dialogStage.showAndWait();
 
         } catch (IOException e) {
+            e.printStackTrace();
             Alerts.showAlerts("IO Exception", "Error londing view", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
